@@ -1,93 +1,80 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta name="description" content="Заріна — професійний майстер бровіст у Кременчуці (Раківка). Фарбування, ламінування та корекція брів.">
-    <meta name="keywords" content="брови Кременчук, бровіст Раківка, ламінування брів, Заріна брови">
-    <meta charset="UTF-8">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заріна — майстер бровіст</title> 
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #ff60c5; color: #333; line-height: 1.6; }
-        header { background: #ff60c5; color: white; padding: 40px 20px; text-align: center; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #ff60c5; color: #333; line-height: 1.5; }
+        header { background: #ff60c5; color: white; padding: 30px 20px; text-align: center; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; text-align: center; }
         
-        h2 { color: #ffffff; margin-top: 30px; border-bottom: 2px solid #eef; display: inline-block; padding-bottom: 10px; }
+        h2 { color: #ffffff; margin-top: 20px; border-bottom: 2px solid #eef; display: inline-block; padding-bottom: 5px; text-transform: uppercase; font-size: 1.5em; }
 
-        /* Сетка процедур - теперь работает правильно */
+        /* Сетка: 4 в ряд на больших экранах */
         .services { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 15px; 
-            justify-content: center; 
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Ровно 4 колонки */
+            gap: 10px; 
             margin-top: 20px; 
         }
 
         .card { 
             background: white; 
-            padding: 20px; 
+            padding: 10px; 
             border-radius: 15px; 
-            width: 220px; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
             transition: 0.3s;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .card:hover { transform: translateY(-5px); }
 
-        @media (max-width: 600px) {
-            .card { width: 90%; }
-            header h1 { font-size: 22px; }
+        .card img {
+            width: 100%;
+            height: 150px; /* Чуть меньше высота, чтобы влезло 4 в ряд */
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
         }
 
-        .price { font-weight: bold; color: #ff60c5; font-size: 1.3em; margin: 5px 0; }
-        .view-photo { font-size: 0.8em; color: #999; margin-top: 5px; }
+        .price { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
+        
+        /* Возвращаем описание, но делаем шрифт чуть меньше для компактности */
+        .description { 
+            font-size: 0.85em; 
+            text-align: left; 
+            color: #444; 
+            margin-bottom: 5px;
+            flex-grow: 1; 
+        }
+
+        /* Адаптация для телефонов: если экран узкий, фото станут по 2 или по 1 в ряд */
+        @media (max-width: 900px) {
+            .services { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .services { grid-template-columns: 1fr; }
+            .card img { height: 200px; }
+        }
 
         /* Модальное окно */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
-            left: 0; top: 0; 
-            width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.9); 
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); 
         }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 450px;
-            border-radius: 15px;
-            margin-top: 50px;
-        }
-        .close {
-            position: absolute;
-            top: 15px; right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        .modal-content { margin: auto; display: block; width: 90%; max-width: 500px; border-radius: 15px; margin-top: 50px; }
+        .close { position: absolute; top: 15px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        .socials { margin: 40px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        .btn { 
-            text-decoration: none; 
-            color: white; 
-            padding: 14px; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            width: 80%; 
-            max-width: 300px;
-            text-align: center;
-            transition: 0.3s; 
-        }
+        .socials { margin: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .btn { text-decoration: none; color: white; padding: 12px; border-radius: 50px; font-weight: bold; width: 80%; max-width: 300px; text-align: center; }
         .tg { background: #0088cc; }
         .inst { background: #e1306c; }
-        .fb { background: #3b5998; }
         
-        footer { color: #fff; padding: 20px; font-size: 14px; text-align: center; opacity: 0.8; }
+        footer { color: #fff; padding: 20px; font-size: 12px; text-align: center; opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -102,60 +89,45 @@
 
 <div class="container">
     <h2>Послуги</h2>
+    
     <div class="services">
-        <div class="card" onclick="openModal('zarifoto1.jpg')">
+        <div class="card" onclick="openModal('zarifoto5.jpg')">
+            <img src="zarifoto1.jpg" alt="Фарбування">
             <h3>Фарбування</h3>
-            <p class="description">🎨 Фарбування брів
-Фарбування брів дозволяє надати їм насиченого кольору, підкреслити форму та зробити погляд більш виразним.
-Підбирається індивідуальний відтінок, який гармонійно поєднується з кольором волосся та тоном шкіри.
-Фарба також може легенько зафарбовувати шкіру, створюючи ефект заповнених брів.
-🎨 Результат тримається до 2–3 тижнів на шкірі та довше на волосках.</p>
+            <p class="description">🎨 Підбирається індивідуальний відтінок. Результат тримається до 2–3 тижнів на шкірі та довше на волосках.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото</p>
         </div>
 
-        <div class="card" onclick="openModal('zarifoto2.jpg')">
+        <div class="card" onclick="openModal('zarifoto6.jpg')">
+            <img src="zarifoto2.jpg" alt="Ламінування">
             <h3>Ламінування</h3>
-            <p class="description">✨ Ламінування брів
-Ламінування брів — це процедура, яка допомагає надати волоскам правильний напрямок, зробити їх слухняними та акуратно зафіксованими.
-Після процедури брови виглядають доглянутими, рівними та охайно укладеними без щоденного використання гелів чи інших засобів.
-💧 Ефект тримається в середньому 4–6 тижнів залежно від типу волосків та догляду після процедури.
-Ідеально підходить для неслухняних, жорстких або асиметричних брів.</p>
+            <p class="description">✨ Робить волоски слухняними та фіксованими. Ідеально для жорстких або асиметричних брів.</p>
             <p class="price">150 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото</p>
         </div>
 
-        <div class="card" onclick="openModal('zarifoto3.jpg')">
+<div class="card" onclick="openModal('zarifoto7.jpg')">
+            <img src="zarifoto3.jpg" alt="Корекція">
             <h3>Корекція</h3>
-            <p class="description">✂️ Корекція брів
-Корекція брів — це створення ідеальної форми відповідно до ваших рис обличчя.
-Видаляються зайві волоски, підкреслюється природна лінія, робиться брова більш акуратною та симетричною.
-Я працюю також воском — це швидкий та практично безболісний спосіб видалення волосків, який дозволяє отримати чисту та чітку форму за мінімальний час.
-Регулярна корекція допомагає підтримувати доглянутий вигляд без зайвих зусиль.</p>
+            <p class="description">✂️ Створення форми відповідно до рис обличчя. Працюю воском — це швидко та чисто.</p>
             <p class="price">50 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото</p>
         </div>
 
-<div class="card" onclick="openModal('zarifoto4.jpg')">
+        <div class="card" onclick="openModal('zarifoto8.jpg')">
+            <img src="zarifoto4.jpg" alt="Освітлення">
             <h3>Освітлення</h3>
-            <p class="description">🌿 Освітлення брів
-Освітлення брів підходить для тих, хто хоче зробити образ м’якшим і більш натуральним.
-Особливо актуально для блондинок або при зміні кольору волосся.
-Процедура допомагає гармонійно поєднати відтінок брів з волоссям та освіжити загальний вигляд обличчя.
-🌞 Дає легкий, природний ефект без різких контрастів</p>
+            <p class="description">🌿 Для м’якого образу. Допомагає гармонійно поєднати відтінок брів з волоссям.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото</p>
         </div>
-    </div> <h2>соцмережі</h2>
+    </div>
+
+    <h2>Соцмережі</h2>
     <div class="socials">
-        <a href="https://t.me/zari_brov" class="btn tg">Telegram</a>
+        <a href="https://t.me/zari_brov" class="btn tg">Telegram Канал</a>
         <a href="https://www.instagram.com/zari_vipbrows_kremenchuk?igsh=MW83ZW5qN2d6YjB1bw==" class="btn inst">Instagram</a>
-        <a href="https://www.facebook.com/share/18RGdD2naR/" class="btn fb">Facebook</a>
-        <a href="https://t.me/Zarino_4_ka?text=Привіт!%20Я%20з%20вашого%20сайту%20і%20хочу%20записатися%20на%20брови" 
-   class="btn-order" 
-   style="background-color: #248224; color: white; text-decoration: none; padding: 15px 25px; border-radius: 50px; display: block; text-align: center; margin: 20px auto; max-width: 300px; font-weight: bold; font-size: 18px;">
-   ✅ Записатися в Telegram
-</a>
+        <a href="https://t.me/Zarino_4_ka?text=Привіт!%20Хочу%20записатися%20на%20брови" 
+           style="background-color: #248224; color: white; text-decoration: none; padding: 15px; border-radius: 50px; width: 85%; max-width: 320px; font-weight: bold; text-align: center;">
+           ✅ Записатися в Telegram
+        </a>
     </div>
 </div>
 
@@ -164,23 +136,16 @@
     <img class="modal-content" id="imgInside">
 </div>
 
-<footer>© Заріна майстер бровіст</footer>
+<footer>© Заріна — Кременчук 2026</footer>
 
 <script>
     function openModal(src) {
         document.getElementById("myModal").style.display = "block";
         document.getElementById("imgInside").src = src;
     }
-
-    function closeModal() {
-        document.getElementById("myModal").style.display = "none";
-    }
-
+    function closeModal() { document.getElementById("myModal").style.display = "none"; }
     window.onclick = function(event) {
-        var modal = document.getElementById("myModal");
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+        if (event.target == document.getElementById("myModal")) { closeModal(); }
     }
 </script>
 
