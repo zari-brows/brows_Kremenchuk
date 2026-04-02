@@ -61,6 +61,55 @@
             .card img { height: 200px; }
         }
 
+                /* Сетка: 7 в ряд на больших экранах */
+        .grafik { 
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Ровно 7 колонки */
+            gap: 10px; 
+            margin-top: 20px; 
+        }
+
+        .card { 
+            background: white; 
+            padding: 10px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card img {
+            width: 100%;
+            height: 80px; /* Чуть меньше высота, чтобы влезло 7 в ряд */
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .price { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
+        
+        /* Возвращаем описание, но делаем шрифт чуть меньше для компактности */
+        .description { 
+            font-size: 0.85em; 
+            text-align: left; 
+            color: #444; 
+            margin-bottom: 5px;
+            flex-grow: 1; 
+        }
+
+        /* Адаптация для телефонов: если экран узкий, фото станут по 2 или по 1 в ряд */
+        @media (max-width: 900px) {
+            .grafik { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .grafik { grid-template-columns: 1fr; }
+            .card img { height: 200px; }
+        }
+
         /* Модальное окно */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
@@ -72,6 +121,7 @@
         .socials { margin: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .btn { text-decoration: none; color: white; padding: 12px; border-radius: 50px; font-weight: bold; width: 80%; max-width: 300px; text-align: center; }
         .tg { background: #0088cc; }
+        .fb { background: #0000a3; }
         .inst { background: #e1306c; }
         
         footer { color: #fff; padding: 20px; font-size: 12px; text-align: center; opacity: 0.8; }
@@ -124,10 +174,103 @@
         </div>
     </div>
 
+    <div class="container">
+    <h2>Графік</h2>
+    
+    <div class="grafik">
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Фарбування">
+            <h3>🌸Понеділок</h3>
+            <p class="Time"></p> 10:00
+            <p class="Time"></p> 11:00
+            <p class="Time"></p> 12:30
+            <p class="Time"></p> 13:30
+            <p class="Time"></p> 16:00
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Ламінування">
+            <h3>🌸Вівторок</h3>
+            <p class="Time"></p>  9:30
+            <p class="Time"></p> 11:00
+            <p class="Time"></p> 12:00
+            <p class="Time"></p> 13:00
+            <p class="Time"></p> 14:30
+            <p class="Time"></p> 15:30
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Корекція">
+            <h3>🌸Середа</h3>
+            <p class="Time"></p> 10:00
+            <p class="Time"></p> 11:00
+            <p class="Time"></p> 12:00
+            <p class="Time"></p> 13:00
+            <p class="Time"></p> 14:00
+            <p class="Time"></p> 15:00
+            <p class="Time"></p> 16:00
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Ламінування">
+            <h3>🌸Четвер</h3>
+            <p class="Time"></p> 10:00
+            <p class="Time"></p> 11:00
+            <p class="Time"></p> 12:00
+            <p class="Time"></p> 13:00
+            <p class="Time"></p> 14:00
+            <p class="Time"></p> 15:00
+            <p class="Time"></p> 16:00
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Освітлення">
+            <h3>🌸Пятниця</h3>
+            <p class="Time"></p> 10:00
+            <p class="Time"></p> 11:00
+            <p class="Time"></p> 12:00
+            <p class="Time"></p> 13:00
+            <p class="Time"></p> 14:00
+            <p class="Time"></p> 15:00
+            <p class="Time"></p> 16:00
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Освітлення">
+            <h3>🌸Субота</h3>
+            <p class="Time"></p> 12:00
+            <p class="Time"></p> 13:00
+            <p class="Time"></p> 14:00
+            <p class="Time"></p> 15:00
+            <p class="Time"></p> 16:00
+            <p class="Time"></p> 17:00
+            <p class="Time"></p> 18:00
+            <p class="Time"></p> 19:00
+        </div>
+
+        <div class="card" onclick="openModal('zarifoto9.jpg')">
+            <img src="zarifoto9.jpg" alt="Освітлення">
+            <h3>🌸Неділя </h3>
+            <p class="price">Вихидний</p>
+        </div>
+
+    </div>
+
     <h2>Соцмережі</h2>
     <div class="socials">
         <a href="https://t.me/zari_brov" class="btn tg">Telegram Канал</a>
         <a href="https://www.instagram.com/zari_vipbrows_kremenchuk?igsh=MW83ZW5qN2d6YjB1bw==" class="btn inst">Instagram</a>
+        <a href="https://www.facebook.com/share/18RGdD2naR/" class="btn fb">Facebook</a>
         <a href="https://t.me/Zarino_4_ka?text=Привіт!%20Хочу%20записатися%20на%20брови" 
            style="background-color: #248224; color: white; text-decoration: none; padding: 15px; border-radius: 50px; width: 85%; max-width: 320px; font-weight: bold; text-align: center;">
            ✅ Записатися в Telegram
