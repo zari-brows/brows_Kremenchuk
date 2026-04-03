@@ -27,14 +27,17 @@
 
         .price, .dayoff { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
         .description { font-size: 0.85em; text-align: left; color: #444; margin-bottom: 5px; flex-grow: 1; }
-        .time { font-size: 0.9em; margin: 2px 0; font-weight: 600; }
+        .time { font-size: 0.85em; margin: 1px 0; color: #555; }
         .view-photo { font-size: 0.75em; color: #888; text-decoration: underline; }
 
-        @media (max-width: 900px) {
-            .services { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 1000px) {
             .grafik { grid-template-columns: repeat(3, 1fr); }
+            .services { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
+            .grafik { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 400px) {
             .services, .grafik { grid-template-columns: 1fr; }
             .services .card img { height: 200px; }
         }
@@ -45,14 +48,13 @@
 
         .socials { margin: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .btn { text-decoration: none; color: white; padding: 12px; border-radius: 50px; font-weight: bold; width: 80%; max-width: 300px; text-align: center; transition: 0.3s; }
-        .btn:active { transform: scale(0.95); }
         .tg { background: #0088cc; }
         .fb { background: #0000a3; }
         .inst { background: #e1306c; }
         .wa { background: #248224; }
         
         footer { color: #fff; padding: 20px; font-size: 12px; text-align: center; opacity: 0.8; }
-        header a { color: white; text-decoration: none; font-weight: bold; }
+        header a { color: white; text-decoration: none; font-weight: bold; border-bottom: 1px dashed white; }
     </style>
 </head>
 <body>
@@ -61,7 +63,7 @@
     <h1>Запрошую тебе до себе на брови!</h1>
     <p>Хочеш красиві, доглянуті та ідеальні брови? Буду рада бачити тебе у себе</p>
     <p>🏩 приймаю на Раківці</p>
-    <p>☎️ телефон для запису: <a href="tel:+380684718973">068 471 89 73</a></p>
+    <p>☎️ запис: <a href="tel:+380684718973">068 471 89 73</a></p>
 </header>
 
 <div class="container">
@@ -70,30 +72,30 @@
         <div class="card" onclick="openModal('zarifoto5.jpg')">
             <img src="zarifoto1.jpg" alt="Фарбування">
             <h3>Фарбування</h3>
-            <p class="description">🎨 Підбирається індивідуальний відтінок. Результат тримається до 2–3 тижнів.</p>
+            <p class="description">🎨 Підбирається індивідуальный відтінок. Результат до 2–3 тижнів.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Фото ДО/ПІСЛЯ</p>
         </div>
         <div class="card" onclick="openModal('zarifoto6.jpg')">
             <img src="zarifoto2.jpg" alt="Ламінування">
             <h3>Ламінування</h3>
-            <p class="description">✨ Робить волоски слухняними та фіксованими. Ідеально для жорстких брів.</p>
+            <p class="description">✨ Робить волоски слухняними. Ідеально для жорстких брів.</p>
             <p class="price">150 грн</p>
-            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Фото ДО/ПІСЛЯ</p>
         </div>
         <div class="card" onclick="openModal('zarifoto7.jpg')">
             <img src="zarifoto3.jpg" alt="Корекція">
             <h3>Корекція</h3>
             <p class="description">✂️ Створення форми воском — це швидко та чисто.</p>
             <p class="price">50 грн</p>
-            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Фото ДО/ПІСЛЯ</p>
         </div>
         <div class="card" onclick="openModal('zarifoto8.jpg')">
             <img src="zarifoto4.jpg" alt="Освітлення">
             <h3>Освітлення</h3>
             <p class="description">🌿 Для м’якого образу та гармонії з кольором волосся.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Фото ДО/ПІСЛЯ</p>
         </div>
     </div>
 
@@ -102,9 +104,9 @@
         <div class="card">
             <img src="zarifoto10.jpg" alt="">
             <h3>🌸Пн</h3>
-            <p class="time">10:00, 11:00</p>
-            <p class="time">12:30, 13:30</p>
-            <p class="time">16:00, 17:00, 18:00</p>
+            <p class="time">10:00, 11:00, 12:30</p>
+            <p class="time">13:30, 16:00, 17:00</p>
+            <p class="time">18:00</p>
         </div>
         <div class="card">
             <img src="zarifoto11.jpg" alt="">
@@ -116,26 +118,30 @@
         <div class="card">
             <img src="zarifoto12.jpg" alt="">
             <h3>🌸Ср</h3>
-            <p class="time">10:00 - 18:00</p>
-            <p class="time">(щогодини)</p>
+            <p class="time">10:00, 11:00, 12:00</p>
+            <p class="time">13:00, 14:00, 15:00</p>
+            <p class="time">16:00, 17:00, 18:00</p>
         </div>
         <div class="card">
             <img src="zarifoto13.jpg" alt="">
             <h3>🌸Чт</h3>
-            <p class="time">10:00 - 18:00</p>
-            <p class="time">(щогодини)</p>
+            <p class="time">10:00, 11:00, 12:00</p>
+            <p class="time">13:00, 14:00, 15:00</p>
+            <p class="time">16:00, 17:00, 18:00</p>
         </div>
         <div class="card">
             <img src="zarifoto14.jpg" alt="">
             <h3>🌸Пт</h3>
-            <p class="time">10:00 - 18:00</p>
-            <p class="time">(щогодини)</p>
+            <p class="time">10:00, 11:00, 12:00</p>
+            <p class="time">13:00, 14:00, 15:00</p>
+            <p class="time">16:00, 17:00, 18:00</p>
         </div>
         <div class="card">
             <img src="zarifoto15.jpg" alt="">
             <h3>🌸Сб</h3>
-            <p class="time">12:00 - 19:00</p>
-            <p class="time">(щогодини)</p>
+            <p class="time">12:00, 13:00, 14:00</p>
+            <p class="time">15:00, 16:00, 17:00</p>
+            <p class="time">18:00, 19:00</p>
         </div>
         <div class="card">
             <img src="zarifoto16.jpg" alt="">
@@ -145,12 +151,12 @@
     </div>
 
     <h2>Соцмережі</h2>
-<div class="socials">
-    <a href="https://t.me/zari_brov" class="btn tg" target="_blank" rel="noopener noreferrer">Telegram Канал</a>
-    <a href="https://www.instagram.com/..." class="btn inst" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="https://www.facebook.com/..." class="btn fb" target="_blank" rel="noopener noreferrer">Facebook</a>
-    <a href="https://t.me/Zarino_4_ka?text=..." class="btn wa" target="_blank" rel="noopener noreferrer">✅ Записатися в Telegram</a>
-</div>
+    <div class="socials">
+        <a href="https://t.me/zari_brov" class="btn tg" target="_blank">Telegram Канал</a>
+        <a href="https://www.instagram.com/zari_vipbrows_kremenchuk?igsh=MW83ZW5qN2d6YjB1bw==" class="btn inst" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/share/18RGdD2naR/" class="btn fb" target="_blank">Facebook</a>
+        <a href="https://t.me/Zarino_4_ka?text=Привіт!%20Хочу%20записатися%20на%20брови" class="btn wa" target="_blank">✅ Записатися в Telegram</a>
+    </div>
 </div>
 
 <div id="myModal" class="modal">
