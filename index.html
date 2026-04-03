@@ -7,124 +7,52 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #ff60c5; color: #333; line-height: 1.5; }
         header { background: #ff60c5; color: white; padding: 30px 20px; text-align: center; }
-        
         .container { max-width: 1200px; margin: 0 auto; padding: 10px; text-align: center; }
-        
         h2 { color: #ffffff; margin-top: 20px; border-bottom: 2px solid #eef; display: inline-block; padding-bottom: 5px; text-transform: uppercase; font-size: 1.5em; }
-
-        /* Сетка: 4 в ряд на больших экранах */
-        .services { 
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Ровно 4 колонки */
-            gap: 10px; 
-            margin-top: 20px; 
-        }
+        
+        .services, .grafik { display: grid; gap: 10px; margin-top: 20px; }
+        .services { grid-template-columns: repeat(4, 1fr); }
+        .grafik { grid-template-columns: repeat(7, 1fr); }
 
         .card { 
-            background: white; 
-            padding: 10px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            transition: 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
+            background: white; padding: 10px; border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; 
+            cursor: pointer; display: flex; flex-direction: column; 
         }
-
         .card:hover { transform: translateY(-5px); }
-
-        .card img {
-            width: 100%;
-            height: 170px; /* Чуть меньше высота, чтобы влезло 4 в ряд */
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
-
-        .price { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
+        .card img { width: 100%; object-fit: cover; border-radius: 10px; margin-bottom: 8px; }
         
-        /* Возвращаем описание, но делаем шрифт чуть меньше для компактности */
-        .description { 
-            font-size: 0.85em; 
-            text-align: left; 
-            color: #444; 
-            margin-bottom: 5px;
-            flex-grow: 1; 
-        }
+        .services .card img { height: 170px; }
+        .grafik .card img { height: 80px; }
 
-        /* Адаптация для телефонов: если экран узкий, фото станут по 2 или по 1 в ряд */
+        .price, .dayoff { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
+        .description { font-size: 0.85em; text-align: left; color: #444; margin-bottom: 5px; flex-grow: 1; }
+        .time { font-size: 0.9em; margin: 2px 0; font-weight: 600; }
+        .view-photo { font-size: 0.75em; color: #888; text-decoration: underline; }
+
         @media (max-width: 900px) {
             .services { grid-template-columns: repeat(2, 1fr); }
+            .grafik { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 500px) {
-            .services { grid-template-columns: 1fr; }
-            .card img { height: 200px; }
+            .services, .grafik { grid-template-columns: 1fr; }
+            .services .card img { height: 200px; }
         }
 
-                /* Сетка: 7 в ряд на больших экранах */
-        .grafik { 
-            display: grid;
-            grid-template-columns: repeat(7, 1fr); /* Ровно 7 колонки */
-            gap: 10px; 
-            margin-top: 20px; 
-        }
-
-        .card { 
-            background: white; 
-            padding: 10px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            transition: 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover { transform: translateY(-5px); }
-
-        .card img {
-            width: 100%;
-            height: 80px; /* Чуть меньше высота, чтобы влезло 7 в ряд */
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
-
-        .price { font-weight: bold; color: #ff60c5; font-size: 1.2em; margin: 5px 0; }
-        
-        /* Возвращаем описание, но делаем шрифт чуть меньше для компактности */
-        .description { 
-            font-size: 0.85em; 
-            text-align: left; 
-            color: #444; 
-            margin-bottom: 5px;
-            flex-grow: 1; 
-        }
-
-        /* Адаптация для телефонов: если экран узкий, фото станут по 2 или по 1 в ряд */
-        @media (max-width: 900px) {
-            .grafik { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 500px) {
-            .grafik { grid-template-columns: 1fr; }
-            .card img { height: 200px; }
-        }
-
-        /* Модальное окно */
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); 
-        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
         .modal-content { margin: auto; display: block; width: 90%; max-width: 350px; border-radius: 15px; margin-top: 50px; }
         .close { position: absolute; top: 15px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
 
         .socials { margin: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .btn { text-decoration: none; color: white; padding: 12px; border-radius: 50px; font-weight: bold; width: 80%; max-width: 300px; text-align: center; }
+        .btn { text-decoration: none; color: white; padding: 12px; border-radius: 50px; font-weight: bold; width: 80%; max-width: 300px; text-align: center; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
         .tg { background: #0088cc; }
         .fb { background: #0000a3; }
         .inst { background: #e1306c; }
+        .wa { background: #248224; }
         
         footer { color: #fff; padding: 20px; font-size: 12px; text-align: center; opacity: 0.8; }
+        header a { color: white; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -133,149 +61,96 @@
     <h1>Запрошую тебе до себе на брови!</h1>
     <p>Хочеш красиві, доглянуті та ідеальні брови? Буду рада бачити тебе у себе</p>
     <p>🏩 приймаю на Раківці</p>
-    <p>☎️ телефон для запису: 068 471 89 73</p>
-    <p>📝 або у директ</p>
+    <p>☎️ телефон для запису: <a href="tel:+380684718973">068 471 89 73</a></p>
 </header>
 
 <div class="container">
     <h2>Послуги</h2>
-    
     <div class="services">
         <div class="card" onclick="openModal('zarifoto5.jpg')">
             <img src="zarifoto1.jpg" alt="Фарбування">
             <h3>Фарбування</h3>
-            <p class="description">🎨 Підбирається індивідуальний відтінок. Результат тримається до 2–3 тижнів на шкірі та довше на волосках.</p>
+            <p class="description">🎨 Підбирається індивідуальний відтінок. Результат тримається до 2–3 тижнів.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
         </div>
-
         <div class="card" onclick="openModal('zarifoto6.jpg')">
             <img src="zarifoto2.jpg" alt="Ламінування">
             <h3>Ламінування</h3>
-            <p class="description">✨ Робить волоски слухняними та фіксованими. Ідеально для жорстких або асиметричних брів.</p>
+            <p class="description">✨ Робить волоски слухняними та фіксованими. Ідеально для жорстких брів.</p>
             <p class="price">150 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
         </div>
-
-<div class="card" onclick="openModal('zarifoto7.jpg')">
+        <div class="card" onclick="openModal('zarifoto7.jpg')">
             <img src="zarifoto3.jpg" alt="Корекція">
             <h3>Корекція</h3>
-            <p class="description">✂️ Створення форми відповідно до рис обличчя. Працюю воском — це швидко та чисто.</p>
+            <p class="description">✂️ Створення форми воском — це швидко та чисто.</p>
             <p class="price">50 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
         </div>
-
         <div class="card" onclick="openModal('zarifoto8.jpg')">
             <img src="zarifoto4.jpg" alt="Освітлення">
             <h3>Освітлення</h3>
-            <p class="description">🌿 Для м’якого образу. Допомагає гармонійно поєднати відтінок брів з волоссям.</p>
+            <p class="description">🌿 Для м’якого образу та гармонії з кольором волосся.</p>
             <p class="price">250 грн</p>
-            <p class="view-photo">Натисніть, щоб подивитись фото ДО/ПІСЛЯ</p>
+            <p class="view-photo">Дивитись фото ДО/ПІСЛЯ</p>
         </div>
     </div>
 
-    <div class="container">
     <h2>Графік</h2>
-    
     <div class="grafik">
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto10.jpg" alt="Фарбування">
-            <h3>🌸Понеділок</h3>
-            <p class="Time"></p> 10:00
-            <p class="Time"></p> 11:00
-            <p class="Time"></p> 12:30
-            <p class="Time"></p> 13:30
-            <p class="Time"></p> 16:00
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
+        <div class="card">
+            <img src="zarifoto10.jpg" alt="">
+            <h3>🌸Пн</h3>
+            <p class="time">10:00, 11:00</p>
+            <p class="time">12:30, 13:30</p>
+            <p class="time">16:00, 17:00, 18:00</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto11.jpg" alt="Ламінування">
-            <h3>🌸Вівторок</h3>
-            <p class="Time"></p>  9:30
-            <p class="Time"></p> 11:00
-            <p class="Time"></p> 12:00
-            <p class="Time"></p> 13:00
-            <p class="Time"></p> 14:30
-            <p class="Time"></p> 15:30
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
+        <div class="card">
+            <img src="zarifoto11.jpg" alt="">
+            <h3>🌸Вт</h3>
+            <p class="time">09:30, 11:00, 12:00</p>
+            <p class="time">13:00, 14:30, 15:30</p>
+            <p class="time">17:00, 18:00</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto12.jpg" alt="Корекція">
-            <h3>🌸Середа</h3>
-            <p class="Time"></p> 10:00
-            <p class="Time"></p> 11:00
-            <p class="Time"></p> 12:00
-            <p class="Time"></p> 13:00
-            <p class="Time"></p> 14:00
-            <p class="Time"></p> 15:00
-            <p class="Time"></p> 16:00
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
+        <div class="card">
+            <img src="zarifoto12.jpg" alt="">
+            <h3>🌸Ср</h3>
+            <p class="time">10:00 - 18:00</p>
+            <p class="time">(щогодини)</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto13.jpg" alt="Ламінування">
-            <h3>🌸Четвер</h3>
-            <p class="Time"></p> 10:00
-            <p class="Time"></p> 11:00
-            <p class="Time"></p> 12:00
-            <p class="Time"></p> 13:00
-            <p class="Time"></p> 14:00
-            <p class="Time"></p> 15:00
-            <p class="Time"></p> 16:00
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
+        <div class="card">
+            <img src="zarifoto13.jpg" alt="">
+            <h3>🌸Чт</h3>
+            <p class="time">10:00 - 18:00</p>
+            <p class="time">(щогодини)</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto14.jpg" alt="Освітлення">
-            <h3>🌸Пятниця</h3>
-            <p class="Time"></p> 10:00
-            <p class="Time"></p> 11:00
-            <p class="Time"></p> 12:00
-            <p class="Time"></p> 13:00
-            <p class="Time"></p> 14:00
-            <p class="Time"></p> 15:00
-            <p class="Time"></p> 16:00
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
+        <div class="card">
+            <img src="zarifoto14.jpg" alt="">
+            <h3>🌸Пт</h3>
+            <p class="time">10:00 - 18:00</p>
+            <p class="time">(щогодини)</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto15.jpg" alt="Освітлення">
-            <h3>🌸Субота</h3>
-            <p class="Time"></p> 12:00
-            <p class="Time"></p> 13:00
-            <p class="Time"></p> 14:00
-            <p class="Time"></p> 15:00
-            <p class="Time"></p> 16:00
-            <p class="Time"></p> 17:00
-            <p class="Time"></p> 18:00
-            <p class="Time"></p> 19:00
+        <div class="card">
+            <img src="zarifoto15.jpg" alt="">
+            <h3>🌸Сб</h3>
+            <p class="time">12:00 - 19:00</p>
+            <p class="time">(щогодини)</p>
         </div>
-
-        <div class="card" onclick="openModal('zarifoto9.jpg')">
-            <img src="zarifoto16.jpg" alt="Освітлення">
-            <h3>🌸Неділя </h3>
-            <p class="price">Вихидний</p>
+        <div class="card">
+            <img src="zarifoto16.jpg" alt="">
+            <h3>🌸Нд</h3>
+            <p class="dayoff">Вихідний</p>
         </div>
-
     </div>
 
     <h2>Соцмережі</h2>
-    <div class="socials">
-        <a href="https://t.me/zari_brov" class="btn tg">Telegram Канал</a>
-        <a href="https://www.instagram.com/zari_vipbrows_kremenchuk?igsh=MW83ZW5qN2d6YjB1bw==" class="btn inst">Instagram</a>
-        <a href="https://www.facebook.com/share/18RGdD2naR/" class="btn fb">Facebook</a>
-        <a href="https://t.me/Zarino_4_ka?text=Привіт!%20Хочу%20записатися%20на%20брови" 
-           style="background-color: #248224; color: white; text-decoration: none; padding: 15px; border-radius: 50px; width: 85%; max-width: 320px; font-weight: bold; text-align: center;">
-           ✅ Записатися в Telegram
-        </a>
-    </div>
+<div class="socials">
+    <a href="https://t.me/zari_brov" class="btn tg" target="_blank" rel="noopener noreferrer">Telegram Канал</a>
+    <a href="https://www.instagram.com/..." class="btn inst" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/..." class="btn fb" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://t.me/Zarino_4_ka?text=..." class="btn wa" target="_blank" rel="noopener noreferrer">✅ Записатися в Telegram</a>
+</div>
 </div>
 
 <div id="myModal" class="modal">
